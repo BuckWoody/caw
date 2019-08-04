@@ -1,0 +1,12 @@
+{
+  "name": "HDInsightOnDemandLinkedService",
+  "properties": {
+    "type": "HDInsightOnDemand",
+    "typeProperties": {
+      "version": "3.1",
+      "clusterSize": 1,
+      "timeToLive": "00:55:00",
+      "linkedServiceName": "StorageLinkedService"
+    }
+  }
+}

@@ -1,0 +1,81 @@
+Student Workbook - Start to Finish with Azure Data Factory
+Orginal Material from Buck Woody, Microsoft - 12/05/2015 (http://buckwoody.com)
+License - Commercial with attribution
+
+Contents: 
+Start to Finish with Azure Data Factory.pptx - PowerPoint Deck of the class
+Start to Finish with Azure Data Factory.pdf - Adobe PDF File of the "Notes" view with links for the class
+7 - Data Ingestion - StudentWorkbook.txt - This file
+7 - Data Ingestion - CreateHDICluster.txt - Creates HDI Cluster in Lab 3
+7 - Data Ingestion - AzureBlobOutput.txt - Creates Azure Blob output in Lab 4
+7 - Data Ingestion - MyFirstPipeline.txt - Creates ADF Pipeline for Lab 5
+7 - Data Ingestion - partitionweblogs.hql - Hive Query for Pipeline Activities
+
+ADF Process: 
+1. Define Architecture: Set up objectives and flow
+2. Create the Data Factory: Portal, PowerShell, VS
+3. Create Linked Services: Connections to Data and Services
+4. Create Datasets: Input and Output 
+5. Create Pipeline: Define Activities 
+6. Monitor and Manage: Portal or PowerShell, Alerts and Metrics
+
+/* Begin Class Exercise */
+Business Goal: Transform and Analyze Web Logs each month
+Design Process: Transform Raw Weblogs stored in a temporary location, using a Hive Query, storing the results in Blob Storage
+
+Lab 1: 
+1. Get your Storage Account Name and Key, created in a previous module
+2. Download Azure Storage Explorer - https://tinyurl.com/adfworkshop
+3. Create a Blob Container called "script" (Access Level: Off)
+4. Copy the file partitionweblogs.hql to that Container
+
+Lab 2:
+1. Open Preview Portal: https://ms.portal.azure.com/#
+2. New | Data + Analytics | Data Factory
+3. Name: DataFactory(your alias)Pipeline
+4. Create new Resource Group: MLADSTrainingADF
+
+VIEW ONLY - DO NOT RUN - PowerShell Script to do the same: 
+1. Open Azure PowerShell
+2. Run Add-AzureAccount and enter the user name and password
+3. Run Get-AzureSubscription to view all the subscriptions for this account.
+4. Run Select-AzureSubscription to select the subscription that you want to work with.
+5. Run Switch-AzureMode AzureResourceManager
+6. Run New-AzureResourceGroup -Name ADFTutorialResourceGroup  -Location "West US"
+7. Run New-AzureDataFactory -ResourceGroupName ADFTutorialResourceGroup –Name DataFactory(your alias)Pipeline –Location "West US"
+
+VIEW ONLY - DO NOT RUN - Visual Studio Steps to do the same: 
+1. Open Visual Studio 2015
+2. Install Data Factory as Extension, restart VS
+3. Switch to Resource view
+4. New | Project | Empty Data Factory Project
+5. Name: DataFactory(your alias)Pipeline
+
+Lab 3: 
+1. Open the Azure Portal and find your Storage Account name and Key
+2. Click Author and Deploy on Data Factory Blade
+3. Click New Data Store and choose Azure Storage
+4. Replace accountname and accountkey values
+5. Click Deploy
+6. In the Data Factory Editor click New Compute | On Demand HDInsight Cluster
+7. Paste from file CreateHDICluster.txt
+8. Click Deploy
+
+Lab 4: 
+1. In the Data Factory Editor click New Dataset and then  Azure Blob Storage
+2. Paste from file AzureBlobOutput.txt
+3. Click Deploy
+
+Lab 5: 
+1. In the Data Factory Editor click ... and then  New Pipeline
+2. Paste from file MyFirstPipeline.txt (Edit for your Storage Account)
+3. Replace storageaccountname with your Storage Account Name
+4. Change the start date to -1 months from today
+5. Change the end date to tomorrow
+6. Click Deploy
+
+Lab 6:
+1. Open the Diagram view of the ADF
+2. Double-click dataset AzureBlobOutput
+3. When the slice is in ready state check the partitiondata folder in the data container for your Blob
+4. Click the Monitoring App (INTERNAL PREVIEW) Link - NOTE: Use Edge or Internet Explorer

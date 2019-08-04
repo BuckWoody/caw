@@ -1,0 +1,49 @@
+.nav a {
+  color: #5a5a5a;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 14px 10px;
+  text-transform: uppercase;
+}
+
+    .nav li {
+        display: inline;
+        }
+
+.jumbotron {
+    background-image: url('../img/header.jpg');
+    height: 200px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    }
+
+    .jumbotron h1 {
+    color: #fff;
+    font-size: 48px;
+    font-weight: bold;
+    }
+
+    .jumbotron p {
+    color: #fff;
+    font-size: 20px;
+    }
+
+    .jumbotron .container {
+    position: relative;
+    top: 30px;
+    }
+
+
+.sections {
+    background-color: #f7f7f7;
+    }
+
+   .sections h3 {
+    font-size: 18px;
+    font-weight: bold;
+    }
+
+    .sections a {
+    color: #00b0ff;
+    }
+

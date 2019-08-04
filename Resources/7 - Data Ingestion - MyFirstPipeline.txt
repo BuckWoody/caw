@@ -1,0 +1,35 @@
+{
+  "name": "MyFirstPipeline",
+  "properties": {
+    "description": "My first Azure Data Factory pipeline",
+    "activities": [
+      {
+        "type": "HDInsightHive",
+        "typeProperties": {
+          "scriptPath": "script/7 - Data Ingestion - partitionweblogs.hql",
+          "scriptLinkedService": "StorageLinkedService",
+          "defines": {
+            "partitionedtable": "wasb://data@<storageaccountname>.blob.core.windows.net/partitioneddata"
+          }
+        },
+        "outputs": [
+          {
+            "name": "AzureBlobOutput"
+          }
+        ],
+        "scheduler": {
+            "frequency": "Month",
+            "interval": 1
+        },
+        "policy": {
+          "concurrency": 1,
+          "retry": 3
+        },
+        "name": "RunSampleHiveActivity",
+        "linkedServiceName": "HDInsightOnDemandLinkedService"
+      }
+    ],
+    "start": "2014-01-01",
+    "end": "2014-01-02"
+  }
+}
